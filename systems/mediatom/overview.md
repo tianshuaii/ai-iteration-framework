@@ -29,4 +29,5 @@
 <!-- iteration-status-view:start -->
 | 轮次 | 主题 | phase | work_state | approval_gate | updated_at | next_action |
 |---|---|---|---|---|---|---|
+| [001-2026-10-29-综合报表应用状态筛选联动](./iterations/001-2026-10-29-%E7%BB%BC%E5%90%88%E6%8A%A5%E8%A1%A8%E5%BA%94%E7%94%A8%E7%8A%B6%E6%80%81%E7%AD%9B%E9%80%89%E8%81%94%E5%8A%A8/status.md) | 综合报表应用状态筛选联动 | done | done | 双审批通过 | 2026-10-29T19:41:30+08:00 | 本轮无后续动作。 |
 <!-- iteration-status-view:end -->
