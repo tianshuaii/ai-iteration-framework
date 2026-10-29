@@ -17,4 +17,5 @@
 | 系统 | 说明 |
 |---|---|
 | [bff-sso](./bff-sso/overview.md) | 登录、账号权限、请求转发 |
+| [mediatom](./mediatom/overview.md) | Mediatom 广告聚合管理后台的页面和接口 |
 | [mergex-manager](./mergex-manager/overview.md) | MergeX 管理端的前端、接口和定时任务 |
