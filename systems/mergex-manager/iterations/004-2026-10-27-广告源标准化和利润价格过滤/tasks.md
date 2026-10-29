@@ -1,0 +1,7 @@
+# 任务
+
+- [x] T-01 管理端增加 `dsp_place.app_std`：写 ALTER 脚本；实体与保存/详情 VO 读写 `appStd`；新增默认 0。依赖：无。文件：`sql/` 新脚本、`model/entity/budget/dsp/DspPlace.java`、相关 `DspPlaceSave*.java` / 详情 VO、`DspPlaceServiceImpl.java`、`DspPlaceMapper.xml`（如需）。检查：`rg -n 'appStd|app_std' src/main/java/com/ydmob/mergex/managerserver/model/entity/budget/dsp/DspPlace.java src/main/java/com/ydmob/mergex/managerserver/model/vo/budget/dsp sql -g '!**/target/**' && test -n "$(ls sql/*app_std* 2>/dev/null || ls sql/*app-std* 2>/dev/null || true)"`
+- [x] T-02 MergeX 广告源基本信息在「请求参数过滤」下加「应用名称标准化」开关，默认关，保存/回显 `appStd`。依赖：T-01。文件：`src/viewsForManage/Budget/EditSource/BaseInfoForm/index.vue`、`src/viewsForManage/Budget/EditSource/index.vue`（及同页表单状态）。检查：`rg -n 'appStd|应用名称标准化' src/viewsForManage/Budget/EditSource`
+- [x] T-03 连接利润策略保存时把 `bidFilterType` 写死为媒体底价 `1`。依赖：无。文件：`service/feature/impl/PriceStrategyServiceImpl.java`（或实际保存入口）、相关 VO。检查：用测试或源码断言保存路径固定为 1（实现时在任务检查里落具体命令）
+- [x] T-04 连接管理利润策略表单去掉价格过滤展示与提交依赖。依赖：无（与 T-03 语义对齐）。文件：`src/components/ProfitInfoForm/**`（含 `BidFilterStrategyV4` 引用处）。检查：`rg -n 'BidFilterStrategyV4|bidFilterType' src/components/ProfitInfoForm src/viewsForManage -g '*.vue' | head`
+- [x] T-05 利润策略全位置补齐：后端 `batchUpdatePrice` 对所有 type 写死媒体底价；AB 实验页去掉价格过滤并提交固定 1。依赖：无。文件：`PriceStrategyServiceImpl.java`、`ConfigABTest/index.vue`。检查：`rg -n 'setBidFilterType\\(BidFilterTypeEnum.MEDIA_FLOOR' src/main/java/com/ydmob/mergex/managerserver/service/feature/impl/PriceStrategyServiceImpl.java && ! rg -n 'BidFilterStrategyV4' src/viewsForManage/FunctionList/ConfigABTest/index.vue`

@@ -1,0 +1,12 @@
+{
+  "fake": {
+    "ok": true,
+    "status": 200,
+    "durationMs": 11
+  },
+  "gateway": {
+    "ok": true,
+    "status": 200,
+    "durationMs": 323
+  }
+}

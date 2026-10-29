@@ -1,0 +1,8 @@
+# 临时产品 worktree 由生命周期脚本创建和清理，不进入框架版本记录。
+.worktrees/
+
+# macOS Finder 元数据与框架内容无关，避免首次基线和后续差异产生噪音。
+.DS_Store
+
+# 系统级创建锁由脚本按需生成，只协调本机并发，不属于耐久框架状态。
+systems/*/.iteration-create.lock

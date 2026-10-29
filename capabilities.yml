@@ -1,0 +1,168 @@
+version: 1
+policy: capability-gates-v1
+
+# 本文件只登记稳定能力与权限，不保存某轮是否已经执行的动态状态。
+# 某轮的实际提供者、摘要和证据统一写入 capability-log.md。
+authorization:
+  interview_answer_writes:
+    allowed_files:
+      - design-interview.md
+      - status.md
+      - requirements.md
+      - decisions.md
+      - change-scope.md
+      - acceptance.md
+      - test-strategy.md
+      - test-cases.md
+      - traceability.md
+      - implementation-plan.md
+      - tasks.md
+      - risks.md
+      - workspace.md
+    product_source: forbidden
+    external_writes: forbidden
+  mcp_default: read-only
+  external_mutations: explicit-user-authorization
+
+complexity:
+  default_when_uncertain: non-trivial
+  non_trivial_conditions:
+    - product-code
+    - interface-or-schema
+    - database-or-migration
+    - permission-or-security
+    - concurrency
+    - performance
+    - multiple-repositories
+    - external-service
+    - deployment
+    - destructive-operation
+
+# 工作流档位只调整访谈和证据组织方式，不降低双审批、首次统一审核、返工增量审核、按风险真实验收或写入授权。
+# 选择规则按风险从高到低匹配：任一 strict 条件不是 no 时必须 strict；否则产品代码使用 standard；其余可用 lite。
+workflow_profiles:
+  selection:
+    strict_when_any:
+      - interface_or_schema
+      - database_or_migration
+      - permission_or_security
+      - concurrency
+      - performance
+      - multiple_repositories
+      - external_service
+      - deployment
+      - destructive_operation
+      - uncertain
+    standard_when_any:
+      - product_code
+    default: lite
+  profiles:
+    lite:
+      rank: 1
+      non_trivial_interview_required_in: [requirements, plan]
+      evidence_mode: consolidated
+    standard:
+      rank: 2
+      non_trivial_interview_required_in: [requirements]
+      evidence_mode: consolidated
+    strict:
+      rank: 3
+      non_trivial_interview_required_in: [requirements, plan]
+      evidence_mode: consolidated
+
+capabilities:
+  design-interview:
+    phases: [specify, plan]
+    required_when: non-trivial
+    preferred: { kind: skill, name: grill-me }
+    fallback: { kind: skill, name: iteration-design-interview }
+    evidence: design-interview.md
+    failure: block
+
+  requirements-review:
+    phases: [specify]
+    required_when: always
+    preferred: { kind: skill, name: iteration-requirements-review }
+    evidence: evidence/analysis/stage-review.md
+    failure: block
+
+  plan-review:
+    phases: [plan]
+    required_when: always
+    preferred: { kind: skill, name: iteration-plan-review }
+    evidence: evidence/analysis/stage-review.md
+    failure: block
+
+  implementation-guard:
+    phases: [implement]
+    required_when: per-task
+    preferred: { kind: skill, name: iteration-implementation-guard }
+    evidence: evidence/reviews/<task-id>.md
+    failure: block
+
+  code-review:
+    phases: [implement]
+    required_when: before-first-verify-and-after-rework
+    preferred: { kind: skill, name: code-review-skill }
+    fallback: { kind: skill, name: iteration-code-review }
+    evidence: evidence/reviews/implementation-review.md
+    failure: block
+
+  test-verification:
+    phases: [verify]
+    required_when: before-done-risk-based
+    preferred: { kind: skill, name: iteration-test-verification }
+    evidence: evidence/delivery/final-review.md
+    failure: block
+
+  delivery-review:
+    phases: [verify]
+    required_when: before-done
+    preferred: { kind: skill, name: iteration-delivery-review }
+    evidence: evidence/delivery/final-review.md
+    failure: block
+
+  iteration-governor:
+    phases: [specify, plan, implement, verify, done]
+    required_when: orchestration
+    preferred: { kind: skill, name: iteration-governor }
+    evidence: capability-log.md
+    failure: block
+
+# MCP 只提供实时事实或受控动作，不替代状态、审批和确定性脚本。
+# 名称是能力别名，不假定每台机器都安装同名 MCP server。
+mcp_capabilities:
+  source-impact-analysis:
+    phases: [specify, plan, implement]
+    required: false
+    preferred_aliases: [codegraph]
+    fallback: local-search
+    permission: read-only
+
+  current-library-documentation:
+    phases: [specify, plan, implement, verify]
+    required: false
+    preferred_aliases: [context7, official-docs]
+    fallback: official-web-documentation
+    permission: read-only
+
+  repository-and-ci-state:
+    phases: [implement, verify]
+    required: false
+    preferred_aliases: [github]
+    fallback: local-git-and-recorded-ci-links
+    permission: read-only
+
+  automated-review-and-security:
+    phases: [implement, verify]
+    required: false
+    preferred_aliases: [code-review, security-scanner]
+    fallback: code-review-skill
+    permission: read-only
+
+  browser-and-api-verification:
+    phases: [verify]
+    required: false
+    preferred_aliases: [browser, api-client]
+    fallback: project-test-commands
+    permission: read-only-unless-explicitly-authorized

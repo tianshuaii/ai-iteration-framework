@@ -1,0 +1,350 @@
+{
+  "restored": true,
+  "serviceCode": "mergex-manager-api",
+  "publicPath": "mergex",
+  "results": [
+    {
+      "name": "whitelist",
+      "method": "GET",
+      "path": "/user/code",
+      "coldMs": 102,
+      "coldOk": true,
+      "steps": [
+        {
+          "concurrency": 1,
+          "success": 37,
+          "errors": 0,
+          "throughput": 18.2,
+          "p50": 54,
+          "p95": 66,
+          "p99": 66,
+          "elapsedMs": 2038,
+          "total": 37
+        },
+        {
+          "concurrency": 2,
+          "success": 58,
+          "errors": 0,
+          "throughput": 28.9,
+          "p50": 65,
+          "p95": 87,
+          "p99": 252,
+          "elapsedMs": 2008,
+          "total": 58
+        },
+        {
+          "concurrency": 4,
+          "success": 128,
+          "errors": 0,
+          "throughput": 62.5,
+          "p50": 59,
+          "p95": 90,
+          "p99": 154,
+          "elapsedMs": 2049,
+          "total": 128
+        },
+        {
+          "concurrency": 8,
+          "success": 230,
+          "errors": 0,
+          "throughput": 111.9,
+          "p50": 65,
+          "p95": 108,
+          "p99": 212,
+          "elapsedMs": 2055,
+          "total": 230
+        },
+        {
+          "concurrency": 16,
+          "success": 410,
+          "errors": 0,
+          "throughput": 198.5,
+          "p50": 73,
+          "p95": 111,
+          "p99": 235,
+          "elapsedMs": 2066,
+          "total": 410
+        },
+        {
+          "concurrency": 32,
+          "success": 566,
+          "errors": 0,
+          "throughput": 270.7,
+          "p50": 113,
+          "p95": 140,
+          "p99": 160,
+          "elapsedMs": 2091,
+          "total": 566
+        },
+        {
+          "concurrency": 64,
+          "success": 640,
+          "errors": 0,
+          "throughput": 291.2,
+          "p50": 212,
+          "p95": 241,
+          "p99": 247,
+          "elapsedMs": 2198,
+          "total": 640
+        },
+        {
+          "concurrency": 128,
+          "success": 640,
+          "errors": 0,
+          "throughput": 282.2,
+          "p50": 443,
+          "p95": 471,
+          "p99": 480,
+          "elapsedMs": 2268,
+          "total": 640
+        }
+      ],
+      "knee": null
+    },
+    {
+      "name": "login",
+      "method": "GET",
+      "path": "/abTestExperiment/getVersionNameList",
+      "coldMs": 83,
+      "coldOk": true,
+      "steps": [
+        {
+          "concurrency": 1,
+          "success": 24,
+          "errors": 0,
+          "throughput": 11.7,
+          "p50": 81,
+          "p95": 102,
+          "p99": 114,
+          "elapsedMs": 2046,
+          "total": 24
+        },
+        {
+          "concurrency": 2,
+          "success": 48,
+          "errors": 0,
+          "throughput": 22.9,
+          "p50": 87,
+          "p95": 101,
+          "p99": 102,
+          "elapsedMs": 2098,
+          "total": 48
+        },
+        {
+          "concurrency": 4,
+          "success": 88,
+          "errors": 0,
+          "throughput": 42.5,
+          "p50": 95,
+          "p95": 104,
+          "p99": 123,
+          "elapsedMs": 2072,
+          "total": 88
+        },
+        {
+          "concurrency": 8,
+          "success": 170,
+          "errors": 0,
+          "throughput": 73.6,
+          "p50": 96,
+          "p95": 123,
+          "p99": 317,
+          "elapsedMs": 2309,
+          "total": 170
+        },
+        {
+          "concurrency": 16,
+          "success": 308,
+          "errors": 0,
+          "throughput": 146.7,
+          "p50": 104,
+          "p95": 138,
+          "p99": 154,
+          "elapsedMs": 2099,
+          "total": 308
+        },
+        {
+          "concurrency": 32,
+          "success": 536,
+          "errors": 0,
+          "throughput": 257.2,
+          "p50": 114,
+          "p95": 193,
+          "p99": 246,
+          "elapsedMs": 2084,
+          "total": 536
+        },
+        {
+          "concurrency": 64,
+          "success": 623,
+          "errors": 0,
+          "throughput": 287.5,
+          "p50": 215,
+          "p95": 241,
+          "p99": 268,
+          "elapsedMs": 2167,
+          "total": 623
+        },
+        {
+          "concurrency": 128,
+          "success": 640,
+          "errors": 0,
+          "throughput": 271,
+          "p50": 454,
+          "p95": 516,
+          "p99": 522,
+          "elapsedMs": 2362,
+          "total": 640
+        }
+      ],
+      "knee": {
+        "concurrency": 128,
+        "reason": "耗时变陡"
+      }
+    },
+    {
+      "name": "one",
+      "method": "GET",
+      "path": "/user/code",
+      "coldMs": 283,
+      "coldOk": true,
+      "steps": [
+        {
+          "concurrency": 1,
+          "success": 9,
+          "errors": 0,
+          "throughput": 4.3,
+          "p50": 212,
+          "p95": 275,
+          "p99": 275,
+          "elapsedMs": 2078,
+          "total": 9
+        },
+        {
+          "concurrency": 2,
+          "success": 20,
+          "errors": 0,
+          "throughput": 9.1,
+          "p50": 217,
+          "p95": 279,
+          "p99": 280,
+          "elapsedMs": 2207,
+          "total": 20
+        },
+        {
+          "concurrency": 4,
+          "success": 8,
+          "errors": 0,
+          "throughput": 3.8,
+          "p50": 614,
+          "p95": 1570,
+          "p99": 1570,
+          "elapsedMs": 2105,
+          "total": 8
+        }
+      ],
+      "knee": {
+        "concurrency": 4,
+        "reason": "耗时变陡"
+      }
+    },
+    {
+      "name": "batch",
+      "method": "GET",
+      "path": "/user/code",
+      "coldMs": 447,
+      "coldOk": true,
+      "steps": [
+        {
+          "concurrency": 1,
+          "success": 2,
+          "errors": 0,
+          "throughput": 0.4,
+          "p50": 1451,
+          "p95": 3769,
+          "p99": 3769,
+          "elapsedMs": 5220,
+          "total": 2
+        },
+        {
+          "concurrency": 2,
+          "success": 2,
+          "errors": 0,
+          "throughput": 0.8,
+          "p50": 2534,
+          "p95": 2534,
+          "p99": 2534,
+          "elapsedMs": 2534,
+          "total": 2
+        },
+        {
+          "concurrency": 4,
+          "success": 8,
+          "errors": 0,
+          "throughput": 1.7,
+          "p50": 1449,
+          "p95": 3300,
+          "p99": 3300,
+          "elapsedMs": 4724,
+          "total": 8
+        },
+        {
+          "concurrency": 8,
+          "success": 8,
+          "errors": 0,
+          "throughput": 3.1,
+          "p50": 2586,
+          "p95": 2610,
+          "p99": 2610,
+          "elapsedMs": 2610,
+          "total": 8
+        },
+        {
+          "concurrency": 16,
+          "success": 16,
+          "errors": 0,
+          "throughput": 4.1,
+          "p50": 3914,
+          "p95": 3944,
+          "p99": 3944,
+          "elapsedMs": 3945,
+          "total": 16
+        },
+        {
+          "concurrency": 32,
+          "success": 32,
+          "errors": 0,
+          "throughput": 8.7,
+          "p50": 3636,
+          "p95": 3687,
+          "p99": 3688,
+          "elapsedMs": 3688,
+          "total": 32
+        },
+        {
+          "concurrency": 64,
+          "success": 128,
+          "errors": 0,
+          "throughput": 30.8,
+          "p50": 1781,
+          "p95": 2425,
+          "p99": 2426,
+          "elapsedMs": 4152,
+          "total": 128
+        },
+        {
+          "concurrency": 128,
+          "success": 128,
+          "errors": 0,
+          "throughput": 32.9,
+          "p50": 3476,
+          "p95": 3727,
+          "p99": 3737,
+          "elapsedMs": 3890,
+          "total": 128
+        }
+      ],
+      "knee": null
+    }
+  ]
+}
